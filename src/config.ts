@@ -9,7 +9,6 @@ export const config = {
   // Demo fixture keys (not production secrets).
   privateKeyPem: fs.readFileSync(path.join(keysDir, "ec-private.pem"), "utf8"),
   publicKeyPem: fs.readFileSync(path.join(keysDir, "ec-public.pem"), "utf8"),
-  // Planted 8.x-era mismatch: EC key material labeled/used as RS256.
-  // jsonwebtoken@8.5.1 tolerates this; @9.0.0 requires ES256 for ec keys.
-  algorithm: "RS256" as const,
+  // EC P-256 signing key — ES256 is required by jsonwebtoken@9.0.0 for ec keys.
+  algorithm: "ES256" as const,
 };
